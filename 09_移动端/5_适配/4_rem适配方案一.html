@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rem适配方案一</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .demo {
+      width: 3.45rem;
+      height: 1.5rem;
+      margin: 0 auto;
+      margin-top: 0.15rem;
+      background-color: #91b4e3;
+      /*border: 1px solid #2b5183;*/ /*边框不参与适配*/
+      border: 0.01rem solid #2b5183; /*边框参与适配*/
+    }
+  </style>
+</head>
+<body>
+  <div class="demo"></div>
+  <script type="text/javascript">
+    function adapter() {
+      // 理想视口下，dip与布局视口相等，因此获取布局视口就可以拿到dip
+      const dip = document.documentElement.clientWidth
+      // 根字体大小 = （手机横向设备独立像素值 * 指定的根字体大小）/ 设计稿宽度
+      // 计算根字体大小(100是我们自己指定，375是设计稿宽度)
+      const rootFontSize = (dip * 100) / 375
+      // 设置根字体
+      document.documentElement.style.fontSize = rootFontSize + 'px'
+    }
+    adapter()
+
+    window.onresize = adapter
+  </script>
+</body>
+</html>
