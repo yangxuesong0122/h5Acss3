@@ -1,19 +1,13 @@
-@Font: 10/375rem;
-
-.demo{
-  margin: (10*@Font) auto;
-  width: (345*@Font);
-  height: (150*@Font);
-  background-color: #91b4e3;
-  border: 1px solid #2b5183;
+@f: 37.5rem;
+* {
+  margin: 0;
+  padding: 0;
 }
-
-// @Font: 375/10rem;
-
-// .demo{
-//   margin: (10/@Font) auto;
-//   width: (345/@Font);
-//   height: (150/@Font);
-//   background-color: #91b4e3;
-//   border: 1px solid #2b5183;
-// }
+.demo {
+  width: (345/@f);
+  height: (150/@f);
+  margin: 0 auto;
+  margin-top: (15/@f);
+  background-color: #000000;
+  border: 1px solid red;
+}

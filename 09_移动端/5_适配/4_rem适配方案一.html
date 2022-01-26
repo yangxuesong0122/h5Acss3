@@ -23,6 +23,14 @@
 <body>
   <div class="demo"></div>
   <script type="text/javascript">
+    /*
+    * 核心过程：
+    *   100/设计稿宽度 = 根字体/手机横向设备独立像素值
+    *   1.根字体=（手机横向设备独立像素值*100）/设计稿宽度
+    *   2.编写样式时
+    *       直接以rem为单位
+    *       值为：设计值/100
+    * */
     function adapter() {
       // 理想视口下，dip与布局视口相等，因此获取布局视口就可以拿到dip
       const dip = document.documentElement.clientWidth
