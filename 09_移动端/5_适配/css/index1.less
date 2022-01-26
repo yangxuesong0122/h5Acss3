@@ -1,0 +1,14 @@
+@f: 100rem;
+* {
+  margin: 0;
+  padding: 0;
+}
+.demo {
+  width: (690/@f);
+  height: (300/@f);
+  margin: 0 auto;
+  margin-top: (30/@f);
+  background-color: #91b4e3;
+  /*border: 1px solid #2b5183;*/ /*边框不参与适配*/
+  border: (1/@f) solid #2b5183; /*边框参与适配*/
+}

@@ -3,30 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>rem适配方案二+less</title>
-  <link rel="stylesheet" href="./css/index2.css">
+  <title>rem适配方案一</title>
 </head>
 <body>
   <div class="demo"></div>
   <script type="text/javascript">
     /*
-    * 核心过程
-    *   1.根字体=设备横向独立像素值/10
+    * 核心过程：
+    *   100/设计稿宽度 = 根字体/手机横向设备独立像素值
+    *   1.根字体=（手机横向设备独立像素值*100）/设计稿宽度
     *   2.编写样式时
     *       直接以rem为单位
-    *       值为：设计值/（设计稿宽度/10）
+    *       值为：设计值/100
     * */
     function adapter() {
       // 理想视口下，dip与布局视口相等，因此获取布局视口就可以拿到dip
       const dip = document.documentElement.clientWidth
-      // 计算根字体大小
-      const rootFontSize = dip / 10
+      // 根字体大小 = （手机横向设备独立像素值 * 指定的根字体大小）/ 设计稿宽度
+      // 计算根字体大小(100是我们自己指定，375是设计稿宽度)
+      const rootFontSize = (dip * 100) / 375
       // 设置根字体
       document.documentElement.style.fontSize = rootFontSize + 'px'
     }
     adapter()
 
-    window.onresize = adapter // 实际生活中意义不大，仅方便调试时切换模拟设备
+    window.onresize = adapter
   </script>
 </body>
 </html>
