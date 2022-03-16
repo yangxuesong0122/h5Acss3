@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>方向键控制元素移动版本一</title>
+  <style type="text/css">
+    #box1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+    }
+  </style>
+  <script type="text/javascript">
+    /*
+    * 键盘事件：
+    * 	onkeydown
+    * 		- 按键被按下
+    * 		- 对于onkeydown来说如果一直按着某个按键不松手，则事件会一直触发
+    * 		- 当onkeydown连续触发时，第一次和第二次之间会间隔稍微长一点，其他的会非常的快,这种设计是为了防止误操作的发生。
+    * 	onkeyup
+    * 		- 按键被松开
+    * 
+    *   键盘事件一般都会绑定给一些可以获取到焦点的对象或者是document
+    */
+    window.onload = function() {
+      /* 
+        存在的问题：当onkeydown连续触发时，第一次和第二次之间会间隔稍微长一点，会有明显的卡顿
+      */
+      // 为document绑定一个按键按下的事件
+      document.onkeydown = function(event) {
+        event = event || window.event
+        // 定义一个变量，来表示移动的速度
+        let speed = 10
+        // 当用户按了ctrl以后，速度加快
+        if(event.ctrlKey) {
+          speed = 50
+        }
+        // 37 左    38 上    39 右     40 下
+        switch(event.keyCode) {
+          case 37:
+            //alert("向左"); left值减小
+            box1.style.left = box1.offsetLeft - speed + "px"
+            break
+          case 39:
+            //alert("向右");
+            box1.style.left = box1.offsetLeft + speed + "px"
+            break
+          case 38:
+            //alert("向上");
+            box1.style.top = box1.offsetTop - speed + "px"
+            break
+          case 40:
+            //alert("向下");
+            box1.style.top = box1.offsetTop + speed + "px"
+            break
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="box1"></div>
+</body>
+</html>
