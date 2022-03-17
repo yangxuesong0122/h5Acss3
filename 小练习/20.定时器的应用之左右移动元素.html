@@ -39,7 +39,7 @@
     }
     
     // 定义一个变量，用来保存定时器的标识
-    let timer
+    // let timer
     /*
      * 参数：
      * 	obj:要执行动画的对象
@@ -48,7 +48,7 @@
      */
     function move(obj, target, speed) {
       // 关闭上一个定时器
-      clearInterval(timer)
+      clearInterval(obj.timer)
       
       //获取元素目前的位置
       let current = parseInt(getStyle(obj, "left"))
@@ -60,7 +60,7 @@
       }
       
       //开启一个定时器，用来执行动画效果
-      timer = setInterval(function() {
+      obj.timer = setInterval(function() {
         // 获取box1的原来的left值
         let oldValue = parseInt(getStyle(obj,"left"))
         
@@ -81,7 +81,7 @@
         // 当元素移动到0px时，使其停止执行动画
         if(newValue == target) {
           //达到目标，关闭定时器
-          clearInterval(timer)
+          clearInterval(obj.timer)
         }
       }, 30)
     }
