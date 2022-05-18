@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>拖拽</title>
+  <style type="text/css">
+    #areaDiv {
+      border: 1px solid black;
+      width: 500px;
+      height: 500px;
+      margin: 50px auto 10px;
+      position: relative;
+    }
+    #showMsg {
+      border: 1px solid black;
+      width: 500px;
+      height: 20px;
+      margin: 0 auto;
+    }
+  </style>
+  <script type="text/javascript">
+    window.onload = function () {
+      let areaDiv = document.getElementById("areaDiv")
+
+      areaDiv.onmousedown = function (event) {
+        let mask = document.getElementById('mask')
+        if (mask) {
+          this.removeChild(mask)
+        }
+        let that = this
+        event = event || window.event
+        // 鼠标按下的位置
+        let startPositionPoint = {
+          x: event.clientX,
+          y: event.clientY
+        }
+        console.log('鼠标按下的位置', startPositionPoint)
+
+        this.onmouseup = function (e) {
+          e = e || window.event
+          // 鼠标松开的位置
+          let endPositionPoint = {
+            x: e.clientX,
+            y: e.clientY
+          }
+          let width = Math.abs(e.clientX - event.clientX)
+          let height = Math.abs(e.clientY - event.clientY)
+
+          let domDiv = document.createElement('div')
+          domDiv.id = 'mask'
+          domDiv.style.width = width + 'px'
+          domDiv.style.height = height + 'px'
+          domDiv.style.position = 'absolute'
+          domDiv.style.top = (startPositionPoint.y - that.offsetTop) + 'px'
+          domDiv.style.left = (startPositionPoint.x - that.offsetLeft) + 'px'
+          domDiv.style.backgroundColor = 'red'
+          that.appendChild(domDiv)
+          console.log(domDiv)
+          console.log('矩形的宽高', { width, height })
+          console.log('鼠标松开的位置', endPositionPoint)
+        }
+        return false
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="areaDiv"></div>
+</body>
+</html>

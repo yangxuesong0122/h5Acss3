@@ -37,7 +37,7 @@
 		 */
 		areaDiv.onmousemove = function(event) {
 			/*
-			 * 在IE8中，响应函数被处罚时，浏览器不会传递事件对象，在IE8及以下的浏览器中，是将事件对象作为window对象的属性保存的
+			 * 在IE8中，响应函数被触发时，浏览器不会传递事件对象，在IE8及以下的浏览器中，是将事件对象作为window对象的属性保存的
 			 */
 			//解决事件对象的兼容性问题
 			event = event || window.event
